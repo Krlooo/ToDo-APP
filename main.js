@@ -25,10 +25,17 @@ document.onclick = function (e) {
 }
 
 function addTodo() {
-    todoInput = inputTodo.value
+
+    todoInput = inputTodo.value;
     console.log(inputTodo.value)
     if (todoInput.length >= 1 && todoInput.length <= 20 && savedTodos.length < 9 && !(savedTodos.includes(todoInput))) {
-        todolist.innerHTML = todolist.innerHTML + `<li style='cursor: pointer;' id="todo" class=' hover:line-through hover:text-red-600'>${todoInput}</li>`;
+        todoinput = document.createTextNode(inputTodo.value);
+        const li = document.createElement('li');
+        li.appendChild(todoinput)
+        li.classList.add('hover:line-through', 'hover:text-red-600', 'cursor-pointer')
+        li.id = "todo"
+        todolist.appendChild(li)
+        // todolist.innerHTML = todolist.innerHTML + `<li style='cursor: pointer;' id="todo" class=' hover:line-through hover:text-red-600'>${todoInput}</li>`;
         savedTodos.push(todoInput);
         inputTodo.value = "";
     }
